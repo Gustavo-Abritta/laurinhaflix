@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laurinhaflix - Login</title>
+    <style>
+        /* Importação de fontes para o estilo Netflix */
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: #ffffff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #e50914;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 30px;
+        }
+        .laurinhaflix {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 80px;
+            font-weight: bold;
+            color: #e50914;
+            letter-spacing: 2px;
+            margin: 50px 0 20px 0; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .input-group input {
+            width: 95%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background-color: #222;
+            color: #fff;
+        }
+        .error-message {
+            color: #ff4d4d;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+        }
+        .btn {
+            background-color: #e50914;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #f40612;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 15px;
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .forgot-password:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="laurinhaflix">Laurinhaflix</div> <!-- Título estilo Netflix -->
+    <div class="container">
+        <div class="title">Login</div>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+                <div id="error-message" class="error-message">A senha deve ter pelo menos 5 caracteres, incluir número e um caractere especial.</div>
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+            <a href="#" class="forgot-password" onclick="showForgotPasswordMessage()">Esqueci a senha</a>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            
+            if (validatePassword(password)) {
+                window.location.href = 'home.html'; // Redireciona após validação
+            } else {
+                errorMessage.style.display = 'block'; // Exibe mensagem de erro
+            }
+        });
+
+        function validatePassword(password) {
+            const minLength = 5;
+            const hasNumber = /\d/.test(password); // Verifica se tem pelo menos um número
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>\/\\]/.test(password); // Verifica se tem pelo menos um caractere especial
+            
+            return password.length >= minLength && hasNumber && hasSpecialChar;
+        }
+
+        function showForgotPasswordMessage() {
+            alert('Se você esqueceu sua senha, tente inserir sua data de namoro.');
+        }
+    </script>
+</body>
+</html>
